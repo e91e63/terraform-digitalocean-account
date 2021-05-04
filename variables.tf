@@ -8,7 +8,7 @@ variable "name" {
   type    = string
 }
 
-variable "networking_conf" {
+variable "network_conf" {
   default = {}
   type    = any
 }
