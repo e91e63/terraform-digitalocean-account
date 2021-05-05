@@ -3,8 +3,8 @@ locals {
     for region, vpc in var.network_conf.vpcs_default :
     region => merge(
       {
-        name = region
-      region   = region
+        name   = region
+        region = region
       },
       vpc
     )
