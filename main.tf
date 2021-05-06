@@ -17,16 +17,16 @@ locals {
   }
 
   vpcs_default_merged = {
-    for region, vpc in var.network_conf.vpcs_default :
+    for region, vpc in var.networks.vpcs_default :
     region => merge(
       local.vpcs_default[region],
       {
         name   = region
         region = region
       },
-      var.network_conf.vpcs_default[region]
+      var.networks.vpcs_default[region]
     )
-    if lookup(var.network_conf.vpcs_default[region], "active", false)
+    if lookup(var.networks.vpcs_default[region], "active", false)
   }
 }
 
