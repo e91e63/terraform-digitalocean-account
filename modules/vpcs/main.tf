@@ -1,4 +1,4 @@
-resource "digitalocean_vpc" "name" {
+resource "digitalocean_vpc" "main" {
   for_each = var.vpcs
 
   ip_range = each.value.ip_range

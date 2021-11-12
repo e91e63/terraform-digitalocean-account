@@ -1,5 +1,5 @@
 locals {
-  vpcs_default = {
+  default_vpcs = {
     ams1 = { ip_range = "10.243.0.0/24" }
     ams2 = { ip_range = "10.243.1.0/24" }
     ams3 = { ip_range = "10.243.2.0/24" }
@@ -16,22 +16,18 @@ locals {
     tor1 = { ip_range = "10.243.13.0/24" }
   }
 
-  vpcs_default_merged = {
-    for region, vpc in var.networks.vpcs_default :
-    region => merge(
-      local.vpcs_default[region],
-      {
-        name   = region
-        region = region
-      },
-      var.networks.vpcs_default[region]
-    )
-    if lookup(var.networks.vpcs_default[region], "active", false)
+  vpcs = { for region, conf in var.conf.default_vpcs : region => {
+    active   = conf.active
+    default  = true
+    ip_range = local.default_vpcs[region].ip_range
+    name     = "${region}-default"
+    region   = region
+    } if conf.active
   }
 }
 
-module "vpcs_default" {
-  source = "./modules/vpcs"
+module "vpcs" {
+  source = "../vpcs"
 
-  vpcs = local.vpcs_default_merged
+  vpcs = local.vpcs
 }
