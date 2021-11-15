@@ -3,4 +3,10 @@ resource "digitalocean_project" "main" {
   environment = var.project_conf.environment
   name        = var.project_conf.name
   purpose     = var.project_conf.purpose
+
+  lifecycle {
+    ignore_changes = [
+      resources,
+    ]
+  }
 }
