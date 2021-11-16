@@ -31,3 +31,7 @@ module "vpcs" {
 
   vpcs = local.vpcs
 }
+
+terraform {
+  required_version = "~> 1"
+}

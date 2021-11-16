@@ -5,3 +5,13 @@ resource "digitalocean_vpc" "main" {
   name     = each.value.name
   region   = each.value.region
 }
+
+terraform {
+  required_providers {
+    digitalocean = {
+      source  = "digitalocean/digitalocean"
+      version = "~> 2"
+    }
+  }
+  required_version = "~> 1"
+}
