@@ -1,3 +1,7 @@
+terraform {
+  required_version = "~> 1"
+}
+
 locals {
   default_vpcs = {
     ams1 = { ip_range = "10.243.0.0/24" }
@@ -30,8 +34,4 @@ module "vpcs" {
   source = "../vpcs"
 
   vpcs = local.vpcs
-}
-
-terraform {
-  required_version = "~> 1"
 }

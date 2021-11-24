@@ -1,3 +1,13 @@
+terraform {
+  required_providers {
+    digitalocean = {
+      source  = "digitalocean/digitalocean"
+      version = "~> 2"
+    }
+  }
+  required_version = "~> 1"
+}
+
 resource "digitalocean_project" "main" {
   description = var.project_conf.description
   environment = var.project_conf.environment
@@ -9,14 +19,4 @@ resource "digitalocean_project" "main" {
       resources,
     ]
   }
-}
-
-terraform {
-  required_providers {
-    digitalocean = {
-      source  = "digitalocean/digitalocean"
-      version = "~> 2"
-    }
-  }
-  required_version = "~> 1"
 }
